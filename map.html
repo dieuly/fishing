@@ -11,15 +11,16 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
   <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.28.0/mapbox-gl.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.0.2/mapbox-gl-directions.css" type="text/css" />
+  <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.0.1/mapbox-gl-geocoder.css" type="text/css" />
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <nav class="navbar transparent">
-   <div class="container-fluid">
-     <div class="navbar-header">
-   </div>
-   <button class="btn btn-default navbar-btn pull-right" data-toggle="modal" data-target="#myModal" style="background-color:#827D79; color:#fff">Join Fisherman</button>
-  </div>
+    <div class="container-fluid">
+      <div class="navbar-header">
+      </div>
+      <button class="btn btn-default navbar-btn pull-right" data-toggle="modal" data-target="#myModal" style="background-color:#827D79; color:#fff">Join Fisherman</button>
+    </div>
   </nav>
   <div id="carousel-banner" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
@@ -69,90 +70,97 @@
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
           <li class="breadcrumb-item active">Search location</li>
         </ol>
+        <div class="row">
+          <div class="col-xs-6">
+            <button class="btn btn-primary pull-right" id="search" onclick="showSearch()">Search</button>
+          </div>
+          <div class="col-xs-6">
+            <button class="btn btn-primary" id="show-route" onclick="showRoute()">Show route</button>
+          </div>
+        </div>
         <div id ="map"></div>
       </div>
       <div class="col-xs-12 col-sm-6">
       </div>
-
     </div>
-<!-- modal -->
+  </div>
 
+  <!-- modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-aria-hidden="true">
-<div class="modal-dialog modal-lg">
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h4 class="modal-title" id="myModalLabel">Sign in/ Sign up</h4>
-    </div>
-    <div class="modal-body">
-      <div class="row">
-        <div class="col-md-8" style="border-right: 1px dotted #C2C2C2;padding-right: 30px;">
-          <!-- Tab panes -->
-          <div class="tab-content">
-            <div class="tab-pane active" id="Login">
-              <form role="form" class="form-horizontal" data-toggle="validator">
-                <div class="form-group">
-                  <label for="signinEmail" class="col-sm-2 control-label">
-                    Email</label>
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="signinEmail" placeholder="email" required />
-                    </div>
-                  </div>
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title" id="myModalLabel">Sign in/ Sign up</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-8" style="border-right: 1px dotted #C2C2C2;padding-right: 30px;">
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div class="tab-pane active" id="Login">
+                <form role="form" class="form-horizontal" data-toggle="validator">
                   <div class="form-group">
-                    <label for="signinPass" class="col-sm-2 control-label">
-                      Password</label>
+                    <label for="signinEmail" class="col-sm-2 control-label">
+                      Email</label>
                       <div class="col-sm-10">
-                        <input type="password" class="form-control" id="signinPass" placeholder="password" required />
+                        <input type="email" class="form-control" id="signinEmail" placeholder="email" required />
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-sm-2">
-                      </div>
-                      <div class="col-sm-10">
-                        <button id="signinBtn" class="btn btn-primary btn-sm">
-                          Sign in</button>
+                    <div class="form-group">
+                      <label for="signinPass" class="col-sm-2 control-label">
+                        Password</label>
+                        <div class="col-sm-10">
+                          <input type="password" class="form-control" id="signinPass" placeholder="password" required />
                         </div>
                       </div>
-                    </form>
-                  </div>
-                  <div class="tab-pane" id="Registration">
-                    <form role="form" class="form-horizontal" data-toggle="validator">
-                      <div class="form-group">
-                        <label for="signupEmail" class="col-sm-2 control-label">
-                          Email</label>
-                          <div class="col-sm-10">
-                            <input type="email" class="form-control" id="signupEmail" placeholder="email" required/>
+                      <div class="row">
+                        <div class="col-sm-2">
+                        </div>
+                        <div class="col-sm-10">
+                          <button id="signinBtn" class="btn btn-primary btn-sm">
+                            Sign in</button>
                           </div>
                         </div>
+                      </form>
+                    </div>
+                    <div class="tab-pane" id="Registration">
+                      <form role="form" class="form-horizontal" data-toggle="validator">
                         <div class="form-group">
-                          <label for="signupPass" class="col-sm-2 control-label">
-                            Password</label>
+                          <label for="signupEmail" class="col-sm-2 control-label">
+                            Email</label>
                             <div class="col-sm-10">
-                              <input type="password" data-minlength="6" class="form-control" id="signupPass" placeholder="password" required />
-                              <div class="help-block">Minimum of 6 characters</div>
+                              <input type="email" class="form-control" id="signupEmail" placeholder="email" required/>
                             </div>
                           </div>
                           <div class="form-group">
-                            <label for="inputPasswordConfirm" class="col-sm-2 control-label">
-                              Confirm password</label>
+                            <label for="signupPass" class="col-sm-2 control-label">
+                              Password</label>
                               <div class="col-sm-10">
-                                <input type="password" class="form-control" id="inputPasswordConfirm" data-match="#signupPass" data-match-error="Whoops, these don't match" placeholder="confirm password" required>
-                                <div class="help-block with-errors"></div>
+                                <input type="password" data-minlength="6" class="form-control" id="signupPass" placeholder="password" required />
+                                <div class="help-block">Minimum of 6 characters</div>
                               </div>
                             </div>
-                            <div class="row">
-                              <!-- <div class="col-sm-2">
-                              </div> -->
-                              <div class="offset-sm-2 col-sm-10">
-                                <button id="signupBtn" class="btn btn-primary btn-sm" style="margin-left:10px">
-                                  Sign up</button>
+                            <div class="form-group">
+                              <label for="inputPasswordConfirm" class="col-sm-2 control-label">
+                                Confirm password</label>
+                                <div class="col-sm-10">
+                                  <input type="password" class="form-control" id="inputPasswordConfirm" data-match="#signupPass" data-match-error="Whoops, these don't match" placeholder="confirm password" required>
+                                  <div class="help-block with-errors"></div>
                                 </div>
                               </div>
-                            </form>
-                          </div>
-                        </div>
+                              <div class="row">
 
+                                <div class="offset-sm-2 col-sm-10">
+                                  <button id="signupBtn" class="btn btn-primary btn-sm" style="margin-left:10px">
+                                    Sign up</button>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
                         </div>
                         <div class="col-md-4">
                           <div class="row text-center sign-with">
@@ -163,8 +171,7 @@ aria-hidden="true">
                               <div class="col-md-12">
                                 <div class="btn-group btn-group-justified">
                                   <a href="#" class="btn btn-primary">Facebook</a>
-                                 <a href="#" class="btn btn-danger">Google</a>
-                                  </div>
+                                  <a href="#" class="btn btn-danger">Google</a>
                                 </div>
                               </div>
                             </div>
@@ -173,13 +180,14 @@ aria-hidden="true">
                       </div>
                     </div>
                   </div>
+                </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
   <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.28.0/mapbox-gl.js"></script>
   <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.0.2/mapbox-gl-directions.js"></script>
-  <script src="js/functions.js"></script>
+  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.0.1/mapbox-gl-geocoder.js"></script>
   <script src="js/map.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBi-VaW_9Cep_V1UP0_BVDgjMqKWr9NjC0"></script>
 

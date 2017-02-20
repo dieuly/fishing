@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>the prototype</title>
+  <title>diary form</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -16,35 +16,35 @@
     <div class="row">
       <div class="offset-sm-2 col-sm-8">
         <h2>Keep you diary here</h2><br>
-        <form class="" action="index.html" method="post">
+        <form class="" action="modified.php" method="post">
           <div class="form-group row">
             <label for="location" class="col-xs-2 col-form-label">Location</label>
             <div class="col-xs-10">
-              <input class="form-control" type="text" placeholder="Espoo" id="">
+              <input class="form-control" type="text" placeholder="Espoo" id="" name="location">
             </div>
           </div>
           <div class="form-group row">
             <label for="date" class="col-xs-2 col-form-label">Date</label>
             <div class="col-xs-10">
-              <input class="form-control" type="date" placeholder="2011-08-19" id="">
+              <input class="form-control" type="date" placeholder="2011-08-19" id="" name="date">
             </div>
           </div>
           <div class="form-group row">
             <label for="method" class="col-xs-2 col-form-label">Fishing method</label>
             <div class="col-xs-10">
-              <input class="form-control" type="text" placeholder="catching" id="">
+              <input class="form-control" type="text" placeholder="catching" id="" name="method">
             </div>
           </div>
           <div class="form-group row">
             <label for="species" class="col-xs-2 col-form-label">Fish species</label>
             <div class="col-xs-10">
-              <input class="form-control" type="text" placeholder="lohi" id="">
+              <input class="form-control" type="text" placeholder="lohi" id="" name="species">
             </div>
           </div>
           <div class="form-group row">
             <label for="method" class="col-xs-2 col-form-label">Weight(kg)</label>
             <div class="col-xs-10">
-              <input class="form-control" type="text" placeholder="7.5" id="">
+              <input class="form-control" type="text" placeholder="7" id="" name="weight">
             </div>
           </div>
           <button type="submit" class="btn btn-primary pull-right">Submit</button>
